@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>JavaScript</title>
+  </head>
+  <body>
+    <canvas id='example'>Обновите браузер</canvas>
+    <script>
+      var example = document.getElementById("example"),
+          ctx     = example.getContext('2d');
+      example.width = 300;
+      example.height = 300;
+      ctx.fillStyle = '#A0522D';
+      ctx.fillRect(100, 200, 100, 100);
+      ctx.fillStyle = '#CD853F';
+      ctx.fillRect(133, 233, 33, 33);
+      ctx.fillStyle = '#800000';
+      ctx.beginPath();
+      ctx.moveTo(70, 200);
+      ctx.lineTo(150, 120);
+      ctx.lineTo(230, 200);
+      ctx.lineTo(90, 200);
+      ctx.fill();
+      var x = 80, y = 210;
+      function animationOne() {
+        ctx.fillStyle = '#B0E0E6';
+        ctx.beginPath();
+        ctx.clearRect(0, 0, 300, 100);
+        ctx.ellipse(x, 30, 50, 20, 0, Math.PI * 2, false);
+        ctx.ellipse(y, 80, 50, 20, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        x++;
+        y--;
+        window.requestAnimationFrame(animationOne);
+        if (x == 210 && y == 80) {
+          animationTwo();
+          function animationTwo() {
+            x--;
+            y++;
+            window.requestAnimationFrame(animationTwo);
+            if (x == 80 && y == 210) {
+              animationOne();
+            }
+          }
+        }
+      }
+      animationOne();
+    </script>
+  </body>
+</html>
