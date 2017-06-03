@@ -1,0 +1,88 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #b0e0e6;
+}
+
+.header
+{
+    color: white;
+    text-align: center;
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#content
+{
+    margin: 0 auto;
+    width: 25%;
+}
+
+.title
+{
+    font-size: 50px;
+    font-weight: bold;
+    margin: 10px 0 50px;
+}
+
+.button_image
+{
+    width: 37%;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#id_image
+{
+    width: 180px;
+    height: 180px;
+    margin-top: 10px;
+}
+
+.image
+{
+    cursor: pointer;
+}
+
+.close_point
+{
+    position: absolute;
+    right: 0;
+    padding: 5px 5px 5px 5px;
+    top: 13px;
+    margin-right: 16px;
+    width: 11%;
+}
+
+input
+{
+    width: 55.3%;
+    padding: 11px;
+    float: left;
+    font-size: 20px;
+}
+
+.add
+{
+    width: 37%;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul li
+{
+    position: relative;
+    padding: 20px 20px 20px 20px;
+    background: #ffffff;
+    font-size: 20px;
+}
