@@ -53,20 +53,23 @@ function img() {
 
   img.setAttribute('src', 'images/stiker.png');
   img.id = "id_image";
-  img.classList = "image"
-  movePicture()
+  img.classList = "image";
+  movePicture();
   document.body.appendChild(img);
   contentDiv.appendChild(img);
 }
 
 function movePicture() {
+
   document.onmousedown = function (e) {
 
     let dragElement = e.target;
 
     if (!dragElement.classList.contains('image')) return;
 
-    let shiftX, shiftY;
+    let coords;
+    let shiftX;
+    let shiftY;
 
     startDrag(e.clientX, e.clientY);
 
@@ -88,7 +91,7 @@ function movePicture() {
       document.body.appendChild(dragElement);
 
       moveAt(clientX, clientY);
-    }
+    };
 
     function finishDrag() {
       dragElement.style.top = parseInt(dragElement.style.top) + pageYOffset + 'px';
@@ -101,10 +104,32 @@ function movePicture() {
     function moveAt(clientX, clientY) {
       let newX = clientX - shiftX;
       let newY = clientY - shiftY;
+
+      //нижняя граница окна
+      let newBottom = newY + dragElement.offsetHeight;
+
+      if (newBottom > document.documentElement.clientHeight) {
+        let docBottom = document.documentElement.getBoundingClientRect().bottom;
+        let scrollY = Math.min(docBottom - newBottom, 10);
+
+        if (scrollY < 0) scrollY = 0;
+        window.scrollBy(0, scrollY);
+        newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
+      }
+
+      //верхняя граница окна
+      if (newY < 0) {
+        let scrollY = Math.min(-newY, 10);
+        if (scrollY < 0) scrollY = 0;
+
+        window.scrollBy(0, -scrollY);
+        newY = Math.max(newY, 0);
+      }
       if (newX < 0) newX = 0;
       if (newX > document.documentElement.clientWidth - dragElement.offsetHeight) {
         newX = document.documentElement.clientWidth - dragElement.offsetHeight;
       }
+
       dragElement.style.left = newX + 'px';
       dragElement.style.top = newY + 'px';
     }
