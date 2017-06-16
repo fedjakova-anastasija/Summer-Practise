@@ -1,163 +1,124 @@
 const contentDiv = document.getElementById("content");
+let a = 0;
+let listId = 0;
+const lists = [];
 
-function newElement() {
-  let liPoint = document.createElement("li");
-  let inputPoint = document.getElementById("input_place").value;
-  let textPoint = document.createTextNode(inputPoint);
+//const ADD_ELEMENT = "addElement";
+const DELETE_ELEMENT = "deleteElement";
 
-  liPoint.appendChild(textPoint);
-  document.getElementById("list").appendChild(liPoint);
-  document.getElementById("input_place").value = "";
+function createElement(tag) {
+	return document.createElement(tag);
+}
 
-  let button = document.createElement("input");
-  newClosePoint(liPoint, "list");
+const aboutObj = {
+	name: "12",
+	lastName: "3432",
+	img: "1.png",
+}
+
+const model = {
+	boards: [],
+	title: "123",
+	about: aboutObj,
+}
+
+const board = {
+	title: "title",
+	img: "", 
+	lists: [],
+};
+
+
+function addList (title) {
+	const list = createList(title);
+	lists.push(list);
+	
+	return list;
+}
+
+createListView(addList("first"), contentDiv);
+createListView(addList("second"), contentDiv);
+createListView(addList("4"), contentDiv);
+
+function createList (title) {
+	const list = {
+		title: title,
+		elements: [],
+		type: "list", //"note" "image" "map"
+	}
+	return list;
+}
+
+function createListView (list, parent){
+	let listView = createElement("div");
+	listView.id = listId++;
+	
+	let header = createElement("p");
+	header.className = "title";
+	header.innerHTML = list.title;
+	 
+	let input = createElement("input");
+	input.id = "input_place";  
+		input.className = "input_place";  
+	input.placeholder = "You should do...";
+
+	 let button = createElement("input");
+	button.className = "add";  
+	button.onclick = function () {
+		let value = listView.getElementsByClassName("input_place")[0].value;	
+		const element = createListElement(listView, value);
+		element.view.addEventListener(DELETE_ELEMENT, function(event) {
+			listView.removeChild(element.view);
+			const index = list.elements.indexOf(element);
+			list.elements.splice(index, 1);
+		}, false);
+		list.elements.push(element);
+	}
+	button.value = "add";
+	
+	 listView.appendChild(header);
+	 listView.appendChild(input);
+	 listView.appendChild(button);
+	 
+	 parent.appendChild(listView);
 }
 
 
+function createListElement(parent, value) {
+	let liPoint = createElement("li");
+
+  liPoint.setAttribute("id", a++)
+  
+  let input = createElement("input");
+  input.value = value;
+
+   liPoint.appendChild(input);
+  parent.appendChild(liPoint);
+  parent.getElementsByClassName("input_place")[0].value = "";
+
+  let button = createElement("input");
+  newClosePoint(liPoint, parent.id);
+  
+	const element = {
+		view: liPoint, 
+		value: value,
+	}
+	
+	return element;
+}
+
 function newClosePoint(item, id) {
-  let button = document.createElement("input");
+  let button = createElement("input");
 
   button.type = "button";
   button.value = "x";
   button.className = "close_point";
   item.appendChild(button);
-
-  let closePoint = document.getElementsByClassName("close_point");
-
-  for (let j = 0; j < closePoint.length; j++) {
-    closePoint[j].onclick = function () {
-      document.getElementById(id).removeChild(item);
+  
+	button.onclick = function () {
+		 var event = new CustomEvent(DELETE_ELEMENT, {
+			detail: id
+		  });
+		item.dispatchEvent(event);
     }
-  }
 }
-
-let list = document.querySelector('ul');
-
-list.addEventListener('click', function(checkedPoint) {
-  if (checkedPoint.target.tagName === 'LI') {
-    checkedPoint.target.classList.toggle('checked');
-  }
-}, false);
-
-/*
- const contentDiv = document.getElementById("content");
-
- let button = document.createElement("input");
- button.type = "button";
- button.id = "button_1";
- button.value = "add";
- button.onclick = addTextInput;
- contentDiv.appendChild(button);
-
-
- function addTextInput() {
- let input = document.createElement("input");
- input.type = "text";
- input.id = "input_1";
- contentDiv.appendChild(input);
-
- let button = document.createElement("input");
- button.type = "button";
- button.id = "button_1";
- button.value = "x";
- contentDiv.appendChild(button);
-
- let button2 = document.createElement("input");
- button2.type = "button";
- button2.id = "button_1";
- button2.value = "attach";
- button2.onclick = img;
- contentDiv.appendChild(button2);
-
- let button1 = document.createElement("input");
- button1.type = "button";
- button1.id = "button_1";
- button1.value = "add";
- button1.onclick = addTextInput;
- contentDiv.appendChild(button1);
- }
-
- function img() {
- let img = document.createElement('img');
- img.setAttribute('src', 'images/stiker.png');
- img.id = "image";
- img.classList = "stiker"
- movePicture()
- document.body.appendChild(img);
- contentDiv.appendChild(img);
- }
-
- function movePicture() {
- document.onmousedown = function (e) {
-
- var dragElement = e.target;
-
- if (!dragElement.classList.contains('stiker')) return;
-
- var shiftX, shiftY;
-
- startDrag(e.clientX, e.clientY);
-
- document.onmousemove = function (e) {
- moveAt(e.clientX, e.clientY);
- };
-
- dragElement.onmouseup = function () {
- finishDrag();
- };
-
- function startDrag(clientX, clientY) {
-
- shiftX = clientX - dragElement.getBoundingClientRect().left;
- shiftY = clientY - dragElement.getBoundingClientRect().top;
-
- dragElement.style.position = 'fixed';
-
- document.body.appendChild(dragElement);
-
- moveAt(clientX, clientY);
- }
-
- function finishDrag() {
- dragElement.style.top = parseInt(dragElement.style.top) + pageYOffset + 'px';
- dragElement.style.position = 'absolute';
-
- document.onmousemove = null;
- dragElement.onmouseup = null;
- }
-
- function moveAt(clientX, clientY) {
- var newX = clientX - shiftX;
- var newY = clientY - shiftY;
- if (newX < 0) newX = 0;
- if (newX > document.documentElement.clientWidth - dragElement.offsetHeight) {
- newX = document.documentElement.clientWidth - dragElement.offsetHeight;
- }
- dragElement.style.left = newX + 'px';
- dragElement.style.top = newY + 'px';
- }
-
- return false;
- }
- }*/
-
-
-/*
- let canv = document.getElementById("img");
- let c = canv.getContext("2d");
- function onfil(doc) {
- let file = doc.files[0];
- let fileread = new FileReader();
-
- fileread.onload = function () {
- let img = new Image();
-
- img.src = fileread.result;
- img.onload = function () {
- canv.width = img.width;
- canv.height = img.height;
- c.drawImage(img, 0, 0);
- }
- }
- fileread.readAsDataURL(file);
- };*/

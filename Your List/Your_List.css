@@ -48,7 +48,7 @@ html, body
 
 .close_point
 {
-    position: absolute;
+    position: relative;
     right: 0;
     padding: 5px 5px 5px 5px;
     top: 13px;
@@ -58,9 +58,7 @@ html, body
 
 input
 {
-    width: 55.3%;
     padding: 11px;
-    float: left;
     font-size: 20px;
 }
 
