@@ -1,0 +1,179 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
+#content 
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+#model
+{
+    display: table;
+    width: calc(100% - 20px);
+    position: absolute;
+    margin: 10px;
+    height: calc(100% - 20px);
+}
+
+/*.board
+{
+    !*display: table;*!
+    position: absolute;
+    height: 100%;
+	width: 100%;
+}*/
+
+.title
+{
+    font-size: 50px;
+    font-weight: bold;
+    width: 10%;
+	position: absolute;
+}
+
+.title_list
+{
+    font-size: 30px;
+    width: 77.3%;
+    display: block;
+}
+
+.list
+{
+    display: table;
+    padding: 10px;
+    background-color: floralwhite;
+	position: absolute;
+}
+
+.board
+{
+	width: 100%;
+    height: calc(100% - 84px);
+    background-color: antiquewhite;
+	position: absolute;
+	top: 84px;
+}
+
+/*#board_lists
+{
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+    position: absolute;
+}*/
+
+.close_point
+{
+    width: 60px;
+    cursor: pointer;
+}
+
+input
+{
+    padding: 11px;
+    font-size: 20px;
+}
+
+.add
+{
+    text-align: center;
+    cursor: pointer;
+}
+
+li
+{
+    list-style: none;
+}
+
+.button_new_board
+{
+    position: absolute;
+    right: 0;
+    width: 10%;
+    height: 84px;
+    cursor: pointer;
+}
+
+#board_header
+{
+    position: absolute;
+    width: 100%;
+    height: 84px;
+}
+
+#board_header_titles
+{
+    position: absolute;
+    width: 90%;
+    height: 84px;
+}
+
+/*
+ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+ul li
+{
+    position: relative;
+    padding: 20px 20px 20px 45px;
+    font-size: 20px;
+    background: #f3f3f3;
+    border: 1px solid #cacaca;
+    cursor: pointer;
+    width: 81%;
+}
+
+ul li.checked
+{
+    text-decoration: line-through;
+}
+
+ul li.checked::before
+{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+.button_image
+{
+    width: 37%;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#id_image
+{
+    width: 180px;
+    height: 180px;
+    margin-top: 10px;
+}
+
+.image
+{
+    cursor: pointer;
+}
+
+
+.header
+{
+    color: black;
+    text-align: center;
+    content: "";
+    display: table;
+    clear: both;
+}*/
