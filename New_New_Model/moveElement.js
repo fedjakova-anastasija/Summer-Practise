@@ -28,11 +28,6 @@ function moveElement(list, listView) {
 
       dragElement.style.position = 'fixed';
 
-      /*for (let i = 0; i < list.lists.length; ++i) {
-        document.getElementById("board" + i).appendChild(dragElement);
-      }*/
-
-
       moveAt(clientX, clientY);
     }
 
@@ -59,35 +54,6 @@ function moveElement(list, listView) {
     function moveAt(clientX, clientY) {
       let newX = clientX - shiftX;
       let newY = clientY - shiftY;
-
-      /*// нижняя граница
-      let newBottom = newY + dragElement.offsetHeight;
-
-      // скролл
-      if (newBottom > document.documentElement.clientHeight) {
-        // координата нижней границы документа относительно окна
-        let docBottom = document.documentElement.getBoundingClientRect().bottom;
-
-        let scrollY = Math.min(docBottom - newBottom, 10);
-
-        if (scrollY < 0) scrollY = 0;
-
-        window.scrollBy(0, scrollY);
-
-        // передвигаем на максимально возможную нижнюю позицию внутри документа
-        newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
-      }
-
-      // верхняя граница
-      if (newY < 94) {
-
-        /!*let scrollY = Math.max(newY, 84);
-        if (scrollY < 0) scrollY = 0; // ошибка округления
-
-        window.scrollBy(0, -scrollY);*!/
-
-        newY = Math.max(newY, 94);
-      }*/
 
       const boundings = dragElement.parentNode.getBoundingClientRect();
       const heightElement = dragElement.offsetHeight;

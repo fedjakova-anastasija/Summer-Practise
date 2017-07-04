@@ -1,6 +1,6 @@
-function createBoard() {
+function createBoard(title) {
   const board = {
-    //title: title,
+    title: title,
     img: "",
     lists: []
   };
@@ -29,10 +29,9 @@ function createModel(title) {
   return model;
 }
 
-function createHeader(title) {
+function createHeader() {
   const header = {
-    titles: [],
-    title: title
+    titles: []
   };
 
   return header;
