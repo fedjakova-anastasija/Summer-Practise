@@ -7,9 +7,9 @@ function createModelView(model, parent) {
   const headerView = createHeaderView(model, modelView);
 
   const boardsViews = [];
-  for (let i = 0; i < model.boards.length; ++i) {
+  /*for (let i = 0; i < model.boards.length; ++i) {
     boardsViews.push(createBoardView(model.boards[i], modelView));
-  }
+  }*/
 
   return modelView;
 }

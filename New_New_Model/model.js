@@ -1,5 +1,8 @@
 const contentDiv = document.getElementById("content");
 
+const itemsFactory = new ItemsFactory();
+const viewsFactory = new ViewsFactory();
+
 let number = 0;
 let listId = 0;
 let BoardId = 0;
@@ -7,8 +10,6 @@ let TitleId = 0;
 
 //const ADD_ELEMENT = "addElement";
 const DELETE_ELEMENT = "deleteElement";
-
-const ADD_BOARD = "addBoard";
 
 const aboutObj = {
   name: "12",
@@ -22,29 +23,30 @@ function createElement(tag) {
 
 const model = createModel('Model');
 const title = createHeader();
-const board = createBoard("1");
+const board = itemsFactory.createBoard("1");
 
-board.lists.push(createList("1"));
-board.lists.push(createList("2"));
+board.lists.push(itemsFactory.createList("1"));
+board.lists.push(itemsFactory.createList("2"));
 model.boards.push(board);
 
 const modelView = createModelView(model, contentDiv);
 
-modelView.addEventListener(ADD_BOARD, function (event) {
+
+
+modelView.addEventListener(EventType.ADD_BOARD, function (event) {
   const board = event.detail;
-  createBoardView(board, modelView);
+  const boardView = viewsFactory.createBoardView(board);
+  modelView.appendChild(boardView.element);
 }, false);
 
 
 function addBoard() {
-  const newBoard = createBoard("New");
-  newBoard.lists.push(createList("3"));
+  const newBoard = itemsFactory.createBoard("New");
+  newBoard.lists.push(itemsFactory.createList("3"));
   model.boards.push(newBoard);
 
-  let addBoardEvent = new CustomEvent(ADD_BOARD, {
-    detail: newBoard
-  });
-  modelView.dispatchEvent(addBoardEvent);
+  const event = new Event(EventType.ADD_BOARD, newBoard);
+  event.dispatch(modelView);
 }
 
 document.getElementById('title0').onclick = function openBoard() {

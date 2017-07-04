@@ -24,7 +24,7 @@ function createHeaderView(model, parent) {
     boardHeaders.push(createBoardHeaderView(model.boards[i], boardHeaderTitles));
   }
 
-  parent.addEventListener(ADD_BOARD, function (event) {
+  parent.addEventListener(EventType.ADD_BOARD, function (event) {
     const t = event.detail;
     createBoardHeaderView(t, boardHeaderTitles)
   }, false);
@@ -40,6 +40,10 @@ function createBoardHeaderView(board, parent) {
   title.id = "title" + TitleId++;
 
   parent.appendChild(title);
+
+  title.onclick = function () {
+    //selectBoard(board.id);
+  };
 
   return title;
 }
