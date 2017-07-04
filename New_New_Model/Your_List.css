@@ -4,12 +4,13 @@ html, body
     padding: 0;
 }
 
-#content 
+#content
 {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
+
 #model
 {
     display: table;
@@ -19,20 +20,12 @@ html, body
     height: calc(100% - 20px);
 }
 
-/*.board
-{
-    !*display: table;*!
-    position: absolute;
-    height: 100%;
-	width: 100%;
-}*/
-
 .title
 {
     font-size: 50px;
     font-weight: bold;
     width: 10%;
-	position: absolute;
+    position: relative;
 }
 
 .title_list
@@ -47,25 +40,17 @@ html, body
     display: table;
     padding: 10px;
     background-color: floralwhite;
-	position: absolute;
+    position: absolute;
 }
 
 .board
 {
-	width: 100%;
+    width: 100%;
     height: calc(100% - 84px);
     background-color: antiquewhite;
-	position: absolute;
-	top: 84px;
-}
-
-/*#board_lists
-{
-    width: 100%;
-    height: 100%;
-    background-color: antiquewhite;
     position: absolute;
-}*/
+    top: 84px;
+}
 
 .close_point
 {
@@ -113,67 +98,64 @@ li
     height: 84px;
 }
 
+.active
+{
+    background-color: #ffffff;
+}
+
 /*
-ul
+#calendar-box
 {
-    margin: 0;
-    padding: 0;
+    font-family: sans-serif;
 }
 
-ul li
+#table-nc
 {
-    position: relative;
-    padding: 20px 20px 20px 45px;
-    font-size: 20px;
-    background: #f3f3f3;
-    border: 1px solid #cacaca;
-    cursor: pointer;
-    width: 81%;
-}
-
-ul li.checked
-{
-    text-decoration: line-through;
-}
-
-ul li.checked::before
-{
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    left: 16px;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 7px;
-}
-
-.button_image
-{
-    width: 37%;
     text-align: center;
-    font-size: 16px;
-    cursor: pointer;
+    margin: 3px;
 }
 
-#id_image
+#table-c
 {
-    width: 180px;
-    height: 180px;
-    margin-top: 10px;
-}
-
-.image
-{
-    cursor: pointer;
-}
-
-
-.header
-{
-    color: black;
     text-align: center;
-    content: "";
-    display: table;
-    clear: both;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#table-c tr, #table-c td, #table-c th
+{
+    padding: 3px;
+    border: 1px solid #dddddd !important;
+    text-align: center !important;
+}
+
+#table-c th
+{
+    font-weight: bold;
+}
+
+#table-c td:hover
+{
+    background-color: #bbc7d3;
+    cursor: pointer;
+}
+
+.today
+{
+    background-color: #ff9900;
+}
+
+.other
+{
+    background-color: #eeeeee;
+}
+
+.linked
+{
+    background-color: #6599ff;
+}
+
+.linked a
+{
+    color: white;
 }*/

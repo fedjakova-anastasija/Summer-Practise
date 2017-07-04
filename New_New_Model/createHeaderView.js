@@ -13,7 +13,6 @@ function createHeaderView(model, parent) {
 
   newBoardButton.onclick = function () {
     addBoard();
-    addHeaderButton();
   };
 
   boardHeader.appendChild(newBoardButton);
@@ -22,17 +21,21 @@ function createHeaderView(model, parent) {
 
   const boardHeaders = [];
   for (let i = 0; i < model.boards.length; ++i) {
-    boardHeaders.push(createHeaderElement(model.boards[i], boardHeaderTitles));
+    boardHeaders.push(createBoardHeaderView(model.boards[i], boardHeaderTitles));
   }
+
+  parent.addEventListener(ADD_BOARD, function (event) {
+    const t = event.detail;
+    createBoardHeaderView(t, boardHeaderTitles)
+  }, false);
 
   return boardHeader;
 }
 
-function createHeaderElement(head, parent) {
-
+function createBoardHeaderView(board, parent) {
   let title = createElement("input");
   title.type = "button";
-  title.value = title.title;
+  title.value = board.title;
   title.className = "title";
   title.id = "title" + TitleId++;
 
@@ -41,12 +44,3 @@ function createHeaderElement(head, parent) {
   return title;
 }
 
-/*
-var showNewButton = document.getElementById('');
-var showNewBlock = document.getElementsByClassName('');
-
-showNewButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  showNewButton.classList.add('hidden_block');
-  showNewBlock[0].classList.add('open_block');
-}, false);*/

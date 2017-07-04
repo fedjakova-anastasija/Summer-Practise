@@ -94,3 +94,4 @@ function buttonCheck(item, id) {
     document.getElementById('checkbox').setAttribute('checked', 'checked');
   }
 }
+
